@@ -1,5 +1,28 @@
-.gameBoard input {
-width: 10rem;
+.gameBoard a {
+font-size: 200px;
+}
+.topMid{
+    border-left:2px black solid;
+    border-right:2px black solid;
+    border-bottom:2px black solid;
+}
+.midLeft{
+    border-top:2px black solid;
+    border-right:2px black solid;
+    border-bottom:2px black solid;
+}
+.midRight{
+    border-left:2px black solid;
+    border-top:2px black solid;
+    border-bottom:2px black solid;
+}
+.bottomMid{
+    border-left:2px black solid;
+    border-right:2px black solid;
+    border-top:2px black solid;
+}
 
-
+.gameBoard{
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 50%;
 }
