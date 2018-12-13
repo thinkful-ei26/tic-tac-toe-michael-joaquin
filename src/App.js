@@ -57,8 +57,24 @@ return(
         {/* <input type= "image" id=" " onClick={e => this.handleChangeTurn(e)} onSubmit={e=> e.preventDefault()} src={this.blank} />
         <input type= "image" id=" " onClick={this.handleChangeTurn} src={this.blank} />
         <input type= "image" id=" " onClick={this.handleChangeTurn} src={this.blank} /> */}
-        <Square handleClickedSquare={this.handleClickedSquare} current={this.state.gameBoard[0]}/>
+        <Square class='top' handleClickedSquare={this.handleClickedSquare} current={this.state.gameBoard[0]}/>
         <Square class='topMid' handleClickedSquare={this.handleClickedSquare} current={this.state.gameBoard[1]}/>
+        <Square class='top' handleClickedSquare={this.handleClickedSquare} current={this.state.gameBoard[2]}/>
+</div>
+<div id='row2'>
+        {/* <input type= "image" id=" " onClick={e => this.handleChangeTurn(e)} onSubmit={e=> e.preventDefault()} src={this.blank} />
+        <input type= "image" id=" " onClick={this.handleChangeTurn} src={this.blank} />
+        <input type= "image" id=" " onClick={this.handleChangeTurn} src={this.blank} /> */}
+        <Square class='top' handleClickedSquare={this.handleClickedSquare} current={this.state.gameBoard[0]}/>
+        <Square class='topMid' handleClickedSquare={this.handleClickedSquare} current={this.state.gameBoard[1]}/>
+        <Square class='top' handleClickedSquare={this.handleClickedSquare} current={this.state.gameBoard[2]}/>
+</div>
+<div id='row3'>
+        {/* <input type= "image" id=" " onClick={e => this.handleChangeTurn(e)} onSubmit={e=> e.preventDefault()} src={this.blank} />
+        <input type= "image" id=" " onClick={this.handleChangeTurn} src={this.blank} />
+        <input type= "image" id=" " onClick={this.handleChangeTurn} src={this.blank} /> */}
+        <Square handleClickedSquare={this.handleClickedSquare} current={this.state.gameBoard[0]}/>
+        <Square class='bottomMid' handleClickedSquare={this.handleClickedSquare} current={this.state.gameBoard[1]}/>
         <Square handleClickedSquare={this.handleClickedSquare} current={this.state.gameBoard[2]}/>
 </div>
  
