@@ -50,7 +50,7 @@ handleClickedSquare(id){
         // function to check if someone won
         this.handleSetId(id)
         console.log(this.state.turn);
-
+        this.calculateWinner();
 }
 
 calculateWinner() {
@@ -68,11 +68,40 @@ calculateWinner() {
         for (let i = 0; i < lines.length; i++) {
           const [a, b, c] = lines[i];
           console.log(squares[a]);
+          if(squares[a] !== '-' && squares[b] !== '-' && squares[c] !== '-' ){
           if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+                  console.log(`Winner ${squares[a]}`);
             return squares[a];
           }
         }
+        }
         return null;
+      }
+
+      handleComputerTurn(){
+        const history = this.state.history.slice(0, this.state.stepNumber + 1);
+        const squares = this.getCurrentSquares();
+        const validMoves = squares.map((move, index) => {
+          if(!move){
+            return index;
+          }else{
+            return -1;
+          }
+          
+        }).filter(x=> x >=0);
+        const nextMove = Math.floor(Math.random()* validMoves.length);
+    
+        squares[nextMove] = this.state.xIsNext ? "X" : "O";
+        this.setState({
+          history: history.concat([
+            {
+              squares: squares
+            }
+          ]),
+          stepNumber: history.length,
+          xIsNext: !this.state.xIsNext
+        });
+    
       }
 
 
