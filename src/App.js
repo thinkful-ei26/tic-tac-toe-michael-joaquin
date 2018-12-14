@@ -79,10 +79,9 @@ calculateWinner() {
       }
 
       handleComputerTurn(){
-        const history = this.state.history.slice(0, this.state.stepNumber + 1);
-        const squares = this.getCurrentSquares();
+        const squares = this.state.gameBoard;
         const validMoves = squares.map((move, index) => {
-          if(!move){
+          if(move === '-'){
             return index;
           }else{
             return -1;
@@ -92,15 +91,7 @@ calculateWinner() {
         const nextMove = Math.floor(Math.random()* validMoves.length);
     
         squares[nextMove] = this.state.xIsNext ? "X" : "O";
-        this.setState({
-          history: history.concat([
-            {
-              squares: squares
-            }
-          ]),
-          stepNumber: history.length,
-          xIsNext: !this.state.xIsNext
-        });
+        this.setState({gameBoard:[...squares]});
     
       }
 
