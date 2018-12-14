@@ -7,9 +7,10 @@ constructor(props){
         super(props);
         this.state={
                 turn: 'x',
-                gameBoard:['x','x','x','x','x','x','x','x','x'],
+                gameBoard:['-','-','-','-','-','-','-','-','-'],
                 gameBool: false,
-                winner:'cats'
+                winner:'cats',
+                id: 0
         }
         // this. X ='https://www.bookriot.com/wp-content/uploads/2013/07/x.png';
         // this.blank = 'https://www.staples-3p.com/s7/is/image/Staples/m004542954_sc7?$std$';
@@ -20,6 +21,7 @@ constructor(props){
         this.handleChangeTurn = this.handleChangeTurn.bind(this);
         this.handleClickedSquare = this.handleClickedSquare.bind(this);
         this.handleSetGameBoard = this.handleSetGameBoard.bind(this);
+        this.handleSetId = this.handleSetId.bind(this);
 }
 
 
@@ -30,52 +32,67 @@ handleChangeTurn(){
           this.setState({turn:'x'})
         }
 }
-handleSetGameBoard(id){
+
+
+handleSetGameBoard(newId){
    const tempArr = [...this.state.gameBoard];
-   tempArr[id] = this.state.turn;
-   console.log(this.state.gameBoard);
-   console.log(tempArr);
-   this.setState({gameBoard: [...tempArr]});
+   tempArr[newId] = this.state.turn.toString();
+   this.setState({gameBoard: [...tempArr]},this.handleChangeTurn());
 }
 
+handleSetId(newId){
+        this.setState({id: newId},this.handleSetGameBoard(newId));
+}
 handleClickedSquare(id){
         // handle changing the img to the players img on the correct square
         // change turns
         // update state                
         // function to check if someone won
-        this.handleSetGameBoard(id);
-        this.handleChangeTurn();
+        this.handleSetId(id)
         console.log(this.state.turn);
 
 }
+
+calculateWinner() {
+        const squares = this.state.gameBoard;
+        const lines = [
+          [0, 1, 2],
+          [3, 4, 5],
+          [6, 7, 8],
+          [0, 3, 6],
+          [1, 4, 7],
+          [2, 5, 8],
+          [0, 4, 8],
+          [2, 4, 6]
+        ];
+        for (let i = 0; i < lines.length; i++) {
+          const [a, b, c] = lines[i];
+          console.log(squares[a]);
+          if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+            return squares[a];
+          }
+        }
+        return null;
+      }
 
 
 render(){
 return(
 <div className='gameBoard' action="">
     <div id='row1'>
-        {/* <input type= "image" id=" " onClick={e => this.handleChangeTurn(e)} onSubmit={e=> e.preventDefault()} src={this.blank} />
-        <input type= "image" id=" " onClick={this.handleChangeTurn} src={this.blank} />
-        <input type= "image" id=" " onClick={this.handleChangeTurn} src={this.blank} /> */}
-        <Square class='top' handleClickedSquare={this.handleClickedSquare} current={this.state.gameBoard[0]}/>
-        <Square class='topMid' handleClickedSquare={this.handleClickedSquare} current={this.state.gameBoard[1]}/>
-        <Square class='top' handleClickedSquare={this.handleClickedSquare} current={this.state.gameBoard[2]}/>
+        <Square class='top' handleClickedSquare={this.handleClickedSquare} id={0} current={this.state.gameBoard[0]}/>
+        <Square class='topMid' handleClickedSquare={this.handleClickedSquare} id={1} current={this.state.gameBoard[1]}/>
+        <Square class='top' handleClickedSquare={this.handleClickedSquare} id={2} current={this.state.gameBoard[2]}/>
 </div>
 <div id='row2'>
-        {/* <input type= "image" id=" " onClick={e => this.handleChangeTurn(e)} onSubmit={e=> e.preventDefault()} src={this.blank} />
-        <input type= "image" id=" " onClick={this.handleChangeTurn} src={this.blank} />
-        <input type= "image" id=" " onClick={this.handleChangeTurn} src={this.blank} /> */}
-        <Square class='top' handleClickedSquare={this.handleClickedSquare} current={this.state.gameBoard[0]}/>
-        <Square class='topMid' handleClickedSquare={this.handleClickedSquare} current={this.state.gameBoard[1]}/>
-        <Square class='top' handleClickedSquare={this.handleClickedSquare} current={this.state.gameBoard[2]}/>
+        <Square class='top' handleClickedSquare={this.handleClickedSquare} id={3} current={this.state.gameBoard[3]}/>
+        <Square class='topMid' handleClickedSquare={this.handleClickedSquare} id={4} current={this.state.gameBoard[4]}/>
+        <Square class='top' handleClickedSquare={this.handleClickedSquare} id={5} current={this.state.gameBoard[5]}/>
 </div>
 <div id='row3'>
-        {/* <input type= "image" id=" " onClick={e => this.handleChangeTurn(e)} onSubmit={e=> e.preventDefault()} src={this.blank} />
-        <input type= "image" id=" " onClick={this.handleChangeTurn} src={this.blank} />
-        <input type= "image" id=" " onClick={this.handleChangeTurn} src={this.blank} /> */}
-        <Square handleClickedSquare={this.handleClickedSquare} current={this.state.gameBoard[0]}/>
-        <Square class='bottomMid' handleClickedSquare={this.handleClickedSquare} current={this.state.gameBoard[1]}/>
-        <Square handleClickedSquare={this.handleClickedSquare} current={this.state.gameBoard[2]}/>
+        <Square handleClickedSquare={this.handleClickedSquare} id={6} current={this.state.gameBoard[6]}/>
+        <Square class='bottomMid' handleClickedSquare={this.handleClickedSquare} id={7} current={this.state.gameBoard[7]}/>
+        <Square handleClickedSquare={this.handleClickedSquare} id={8} current={this.state.gameBoard[8]}/>
 </div>
  
 </div>
